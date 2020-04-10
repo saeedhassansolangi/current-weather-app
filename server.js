@@ -2,11 +2,8 @@ const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
 const fetch = require("node-fetch")
-const PORT = process.env.PORT || 3200;
+const PORT = process.env.PORT || 2000;
 const flag = require('country-flag-emoji');
-
-// i added my self by https:// , because they give and error that  only  absolute url are supported
-// api.openweathermap.org/data/2.5/weather?q=dadu&appid=42103cbe3438aff5f2c20805be56718e
 
 const api = {
     key  : "42103cbe3438aff5f2c20805be56718e",
@@ -24,25 +21,23 @@ app.use(bodyparser.urlencoded({extended:true}))
 //     .catch(err => console.log(err)
 //     )
 
-
 app.get("/", (req, res) => {
-    res.render("weather",{data:" "})
+    res.render("weather")
 })
 
 
-app.post("/", (req, res) => {
+app.post("/", async (req, res) => {
     let searchQuery = req.body.search;
     fetch(`${api.base}weather?q=${searchQuery}&appid=${api.key}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             let kelToCal = data.main.temp - 273.15
             let parseKelToCal = JSON.stringify(kelToCal)
             let removeSpace = parseKelToCal.substring(0, 4)
             let temp = removeSpace.trim()
-
             let countryEmoji = flag.get(data.sys.country)
-            console.log(countryEmoji.emoji , temp);
+;
             
           res.render("weather", { data: data  ,temps:temp, countryEmoji:countryEmoji})
 })       .catch(err => console.log(err))

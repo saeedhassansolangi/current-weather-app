@@ -1,7 +1,8 @@
 <%-include("partials/headers")%>
 
 <div style="width: 50% ; margin:0 auto  ;" class="mt-5">
-    <h3 style="text-align: center; letter-spacing:3px; color: lightslategrey;">Find Current Weather in Your City/Country</h3>
+    <h3 style="text-align: center; letter-spacing:3px; color: lightslategrey;">Find Current Weather in Your City/Country
+    </h3>
     <form action="/" method="POST">
         <fieldset class="form-group">
             <label for="exampleInputEmail1" class="bmd-label-floating">Search your City/Country here .... </label>
@@ -11,18 +12,22 @@
     </form>
 
 
-    <div class="jumbotron bg-info text-white" >
-        <div>
-         
-            
-            <img src="http://openweathermap.org/img/wn/<%=data.weather[0].icon%>@2x.png" alt="icon not found">
-            <span> <strong> <%=data.name%> </strong> , <%=data.sys.country%> <%=countryEmoji.emoji%> <%=data.weather[0].description%></span>
-                <p style="text-align: center;">Temperature <%=temps%></p>
-           
+    <div class="jumbotron bg-info text-white">
+        <%if(typeof data !=="undefined" && typeof temps !=="undefined"){%>
+        <div >
+            <img src="http://openweathermap.org/img/wn/<%=data.weather[0].icon%>@2x.png" alt="icon not found"> 
+            <span> <strong> <%=data.name%> </strong> , <%=data.sys.country%>  <%=countryEmoji.emoji%> <%=data.weather[0].description%></span>
+            <p style="text-align: center;">Temperature <%=temps%><sup>o</sup>C</p>
+        
         </div>
+        <%}else{%>
+            <p></p>
+        <%}%>
+        
+        
+        
+        </div>
+                <p class="text-primary" style="text-align: center;">&copy;saeedhassansolangi</p>
 
     </div>
-
-    <p class="text-primary" style="text-align: center;">&copy;saeedhassansolangi</p>
-
-</div>
+    </div>
