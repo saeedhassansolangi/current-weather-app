@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
 const fetch = require("node-fetch")
-const PORT = 3200;
+const PORT = 3200 || process.env.PORT;
 const flag = require('country-flag-emoji');
 
 // i added my self by https:// , because they give and error that  only  absolute url are supported
