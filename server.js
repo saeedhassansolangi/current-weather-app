@@ -10,7 +10,7 @@ const api = {
     base: "https://api.openweathermap.org/data/2.5/"
 }
 
-
+app.use(express.static("public"))
 app.set("view engine", "ejs")
 app.use(bodyparser.urlencoded({
     extended: true

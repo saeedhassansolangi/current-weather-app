@@ -14,7 +14,7 @@
 
     <div class="jumbotron bg-info text-white">
         <%if(typeof data !=="undefined" && typeof temps !=="undefined"){%>
-           <div>
+           <div class="img">
                 <img src="http://openweathermap.org/img/wn/<%=data.weather[0].icon%>@2x.png" alt="icon not found"> 
             <span> <strong> <%=data.name%> </strong> , <%=data.sys.country%>  <%=countryEmoji.emoji%></span>
 
