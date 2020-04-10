@@ -14,15 +14,18 @@
 
     <div class="jumbotron bg-info text-white">
         <%if(typeof data !=="undefined" && typeof temps !=="undefined"){%>
-        <div >
-            <img src="http://openweathermap.org/img/wn/<%=data.weather[0].icon%>@2x.png" alt="icon not found"> 
-            <span> <strong> <%=data.name%> </strong> , <%=data.sys.country%>  <%=countryEmoji.emoji%> <%=data.weather[0].description%></span>
-            <p style="text-align: center;">Temperature <%=temps%><sup>o</sup>C</p>
-        
+        <div style="margin-left:40%">
+            
+            <img src="http://openweathermap.org/img/wn/<%=data.weather[0].icon%>@2x.png" alt="icon not found">
+            <p> <strong> <%=data.name%> </strong> , <%=data.sys.country%> <%=countryEmoji.emoji%></p>
+
         </div>
-        <%}else{%>
-            <p></p>
-        <%}%>
+        <p style="text-align: center;">Temperature <%=temps%><sup>o</sup>C <%=data.weather[0].description%></p>
+
+    </div>
+    <%}else{%>
+    <p></p>
+    <%}%>
         
         
         
