@@ -31,7 +31,8 @@ app.post("/", async (req, res) => {
     fetch(`${api.base}weather?q=${searchQuery}&appid=${api.key}`)
         .then(response => response.json())
         .then(data => {
-            // console.log(data);
+            try {
+                 // console.log(data);
             let kelToCal = data.main.temp - 273.15
             let parseKelToCal = JSON.stringify(kelToCal)
             let removeSpace = parseKelToCal.substring(0, 4)
@@ -40,7 +41,14 @@ app.post("/", async (req, res) => {
 ;
             
           res.render("weather", { data: data  ,temps:temp, countryEmoji:countryEmoji})
+    
+} catch (err) {
+    res.send(data , "Not found")
+}
+           
 })       .catch(err => console.log(err))
 })
 
-app.listen(PORT , console.log(`Server is Running on The PORT ${PORT}`))
+app.listen(PORT, console.log(`Server is Running on The PORT ${PORT}`))
+
+
