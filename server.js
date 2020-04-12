@@ -33,24 +33,27 @@ app.post("/", async (req, res) => {
     fetch(`${api.base}weather?q=${searchQuery}&appid=${api.key}`)
         .then(response => response.json())
         .then(data => {
-            try {
-                // console.log(data);
-                let kelToCal = data.main.temp - 273.15
-                let parseKelToCal = JSON.stringify(kelToCal)
-                let removeSpace = parseKelToCal.substring(0, 4)
-                let temp = removeSpace.trim()
-                let countryEmoji = flag.get(data.sys.country);
+            if (searchQuery !== "") {
+                try {
+                    // console.log(data);
+                    let kelToCal = data.main.temp - 273.15
+                    let parseKelToCal = JSON.stringify(kelToCal)
+                    let removeSpace = parseKelToCal.substring(0, 4)
+                    let temp = removeSpace.trim()
+                    let countryEmoji = flag.get(data.sys.country);
 
-                res.render("weather", {
-                    data: data,
-                    temps: temp,
-                    countryEmoji: countryEmoji
-                })
+                    res.render("weather", {
+                        data: data,
+                        temps: temp,
+                        countryEmoji: countryEmoji
+                    })
 
-            } catch (err) {
-                res.send(data, "Not found")
+                } catch (err) {
+                    res.send(data, "Not found")
+                }
+            } else {
+                res.redirect("back")
             }
-
         }).catch(err => console.log(err))
 })
 
