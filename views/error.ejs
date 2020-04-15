@@ -1,0 +1,12 @@
+<%-include("partials/headers")%>
+<%if(typeof data === "object" ){%>
+    <div class="alert alert-danger" role="alert">
+<h1><%=data.cod %> <%=data.message %></h1>
+</div>
+    
+<%}else{%>
+    <div class="alert alert-info" role="alert">
+  <h1>Oops Something Went Wrong</h1>
+</div
+  
+<%}%>

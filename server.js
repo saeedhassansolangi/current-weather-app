@@ -27,6 +27,10 @@ app.get("/", (req, res) => {
     res.render("weather")
 })
 
+app.get("*", (req, res) => {
+    res.render("error")
+})
+
 
 app.post("/", async (req, res) => {
     let searchQuery = req.body.search;
@@ -49,12 +53,19 @@ app.post("/", async (req, res) => {
                     })
 
                 } catch (err) {
-                    res.send(data, "Not found")
+                    // res.send(data)
+                    res.render("error",{data})
                 }
             } else {
                 res.redirect("back")
             }
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            console.log("Error is FOund",err)
+            res.render("error",{err})
+        })
 })
+
+
+
 
 app.listen(PORT, console.log(`Server is Running on The PORT ${PORT}`))
