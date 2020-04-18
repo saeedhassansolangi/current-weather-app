@@ -4,9 +4,10 @@ const bodyparser = require("body-parser");
 const fetch = require("node-fetch")
 const PORT = process.env.PORT || 2000;
 const flag = require('country-flag-emoji');
+require("dotenv").config()
 
 const api = {
-    key: "42103cbe3438aff5f2c20805be56718e",
+    key: process.env.API_KEY,
     base: "https://api.openweathermap.org/data/2.5/"
 }
 
