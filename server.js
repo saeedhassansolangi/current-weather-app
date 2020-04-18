@@ -17,13 +17,6 @@ app.use(bodyparser.urlencoded({
     extended: true
 }))
 
-
-// fetch(`${api.base}weather?q=${query}&appid=${api.key}`)
-//     .then(response => response.json())
-//     .then(data =>console.log(data))
-//     .catch(err => console.log(err)
-//     )
-
 app.get("/", (req, res) => {
     res.render("weather")
 })
@@ -31,7 +24,6 @@ app.get("/", (req, res) => {
 app.get("*", (req, res) => {
     res.render("error")
 })
-
 
 app.post("/", async (req, res) => {
     let searchQuery = req.body.search;
@@ -54,19 +46,19 @@ app.post("/", async (req, res) => {
                     })
 
                 } catch (err) {
-                    // res.send(data)
-                    res.render("error",{data})
+                    res.render("error", {
+                        data
+                    })
                 }
             } else {
                 res.redirect("back")
             }
         }).catch(err => {
-            console.log("Error is FOund",err)
-            res.render("error",{err})
+            console.log("Error is FOund", err)
+            res.render("error", {
+                err
+            })
         })
 })
-
-
-
 
 app.listen(PORT, console.log(`Server is Running on The PORT ${PORT}`))
